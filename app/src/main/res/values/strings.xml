@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">BasicChatApp</string>
+    <string name="name">ChitChat</string>
+    <string name="Email">Enter your E-mail</string>
+    <string name="Password">Enter your Password</string>
+    <string name="todo">TODO</string>
+    <string name="yourname">Enter your name</string>
+    <string name="signUp">Sign Up</string>
+    <string name="signIn">Sign In</string>
+</resources>
