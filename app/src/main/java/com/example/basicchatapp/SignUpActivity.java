@@ -70,6 +70,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                             Toast.makeText(SignUpActivity.this, task.getException().toString(),
                                     Toast.LENGTH_SHORT).show();
+
                         }
                     }
                 });
