@@ -8,21 +8,21 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.basicchatapp.databinding.ActivityLoginBinding;
+import com.example.basicchatapp.databinding.ActivitySigninBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class LoginActivity extends AppCompatActivity {
+public class SIgnInActivity extends AppCompatActivity {
 
-    ActivityLoginBinding binding;
+    ActivitySigninBinding binding;
     private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityLoginBinding.inflate(getLayoutInflater());
+        binding = ActivitySigninBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         getSupportActionBar().hide();
@@ -37,14 +37,14 @@ public class LoginActivity extends AppCompatActivity {
         binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                auth(binding.logInEmail.getText().toString(), binding.logInPassword.getText().toString());
+                auth(binding.signInEmail.getText().toString(), binding.signInPassword.getText().toString());
             }
         });
 
         binding.button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
+                startActivity(new Intent(SIgnInActivity.this, SignUpActivity.class));
             }
         });
     }
@@ -56,11 +56,11 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
 
-                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            startActivity(new Intent(SIgnInActivity.this, MainActivity.class));
 
                         } else {
 
-                            Toast.makeText(LoginActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SIgnInActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
 
                         }
                     }

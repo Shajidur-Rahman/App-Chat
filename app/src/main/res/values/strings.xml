@@ -8,4 +8,5 @@
     <string name="signUp">Sign Up</string>
     <string name="signIn">Sign In</string>
     <string name="already">Already have a account!</string>
+    <string name="dont">Don\'t have a account?</string>
 </resources>

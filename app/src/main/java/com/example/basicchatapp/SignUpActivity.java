@@ -51,20 +51,20 @@ public class SignUpActivity extends AppCompatActivity {
         binding.signUpInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+                startActivity(new Intent(SignUpActivity.this, SIgnInActivity.class));
             }
         });
 
     }
 
     private void auth() {
-        mAuth.createUserWithEmailAndPassword(binding.signInEmail.getText().toString(),binding.signInPassword.getText().toString())
+        mAuth.createUserWithEmailAndPassword(binding.signUpEmail.getText().toString(),binding.signUpPassword.getText().toString())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
 
-                            startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+                            startActivity(new Intent(SignUpActivity.this, SIgnInActivity.class));
 
                         } else {
 
