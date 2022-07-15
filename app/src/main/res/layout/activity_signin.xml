@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:fillViewport="true"
     android:layout_height="match_parent"
-    tools:context=".SIgnInActivity">
+    tools:context=".Activity.SIgnInActivity">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".SignUpActivity">
+        tools:context=".Activity.SignUpActivity">
 
         <ImageView
             android:id="@+id/imageView"
