@@ -1,4 +1,4 @@
-package com.example.basicchatapp;
+package com.example.basicchatapp.Activity;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -13,9 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.basicchatapp.Activity.SIgnInActivity;
 import com.example.basicchatapp.Adapter.MsgAdapter;
 import com.example.basicchatapp.Model.User;
+import com.example.basicchatapp.R;
 import com.example.basicchatapp.databinding.ActivityMainBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseDatabase database;
     FirebaseAuth mauth;
     MsgAdapter msgAdapter;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         mauth = FirebaseAuth.getInstance();
         myRef = database.getReference();
+
 
         readData();
         userList();
@@ -90,8 +92,15 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                users.clear();
                for (DataSnapshot snapshot:dataSnapshot.getChildren()){
-                   User user = snapshot.getValue(User.class);
-                   users.add(user);
+                   user = new User();
+                   user = snapshot.getValue(User.class);
+
+                  if (mauth.getCurrentUser().getEmail() != user.getEmail()){
+
+                      users.add(user);
+                  }
+
+
                }
                msgAdapter.notifyDataSetChanged();
 

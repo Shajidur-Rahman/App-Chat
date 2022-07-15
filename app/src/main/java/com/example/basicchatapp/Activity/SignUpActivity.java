@@ -9,7 +9,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.basicchatapp.MainActivity;
 import com.example.basicchatapp.Model.User;
 import com.example.basicchatapp.R;
 import com.example.basicchatapp.databinding.ActivitySignUpBinding;

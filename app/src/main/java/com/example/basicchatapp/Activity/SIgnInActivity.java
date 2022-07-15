@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.basicchatapp.MainActivity;
 import com.example.basicchatapp.R;
 import com.example.basicchatapp.databinding.ActivitySigninBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -104,6 +103,7 @@ public class SIgnInActivity extends AppCompatActivity {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.P)
     private void color() {
         int nightModeFlags =
                 SIgnInActivity.this.getResources().getConfiguration().uiMode &
