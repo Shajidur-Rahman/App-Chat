@@ -4,6 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.18225419664268586" />
+        <entry key="..\:/Users/Shajidur Rahman/Documents/AndroidProject/App-Chat/app/src/main/res/drawable/button.xml" value="0.1" />
+        <entry key="..\:/Users/Shajidur Rahman/Documents/AndroidProject/App-Chat/app/src/main/res/drawable/recieve.xml" value="0.1" />
+        <entry key="..\:/Users/Shajidur Rahman/Documents/AndroidProject/App-Chat/app/src/main/res/drawable/sent.xml" value="0.1" />
+        <entry key="..\:/Users/Shajidur Rahman/Documents/AndroidProject/App-Chat/app/src/main/res/layout/activity_chat.xml" value="0.1" />
+        <entry key="..\:/Users/Shajidur Rahman/Documents/AndroidProject/App-Chat/app/src/main/res/layout/recieve.xml" value="0.2" />
+        <entry key="..\:/Users/Shajidur Rahman/Documents/AndroidProject/App-Chat/app/src/main/res/layout/sent.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/button.xml" value="0.2025" />
         <entry key="app/src/main/res/drawable/button_selector.xml" value="0.2025" />
         <entry key="app/src/main/res/layout/activity_chat.xml" value="0.29329173166926675" />

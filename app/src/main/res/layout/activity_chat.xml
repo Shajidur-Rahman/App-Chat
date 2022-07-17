@@ -8,7 +8,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="ma"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toTopOf="@+id/cardView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -55,7 +55,7 @@
                 android:layout_height="30dp"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:src="@drawable/send" />
+                android:src="@drawable/send"  android:layout_width="0dp"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
