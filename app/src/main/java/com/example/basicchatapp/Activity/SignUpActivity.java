@@ -17,7 +17,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -26,6 +25,7 @@ public class SignUpActivity extends AppCompatActivity {
     ActivitySignUpBinding binding;
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
+    String uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +40,8 @@ public class SignUpActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
 
+
+
         getSupportActionBar().hide();
 
         button();
@@ -47,16 +49,16 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            reload();
-        }
-    }
+//
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        // Check if user is signed in (non-null) and update UI accordingly.
+//        FirebaseUser currentUser = mAuth.getCurrentUser();
+//        if(currentUser != null){
+//            reload();
+//        }
+//    }
 
     private void reload() {
         startActivity(new Intent(SignUpActivity.this, MainActivity.class));
@@ -69,13 +71,8 @@ public class SignUpActivity extends AppCompatActivity {
                 String email = binding.signUpEmail.getText().toString();
                 String password = binding.signUpPassword.getText().toString();
 
-                if (email.length() < 16 && password.length() < 8){
-                    binding.signUpEmail.setError("Email must be 15 chr");
-                    binding.signUpPassword.setError("Password must be 8 chr");
-                } else if (email.length() < 16 ){
-                    binding.signUpEmail.setError("Email must be 15 chr");
-                } else if(password.length() < 8){
-                    binding.signUpPassword.setError("Password must be 8 chr");
+                if (password.length() < 8){
+                    binding.signUpPassword.setError("Password must be 4 chr");
                 } else {
                     auth();
                 }
@@ -97,7 +94,16 @@ public class SignUpActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            userToDataBase(binding.signUpName.getText().toString(), binding.signUpEmail.getText().toString(), binding.signUpPassword.getText().toString(), mAuth.getUid());
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            DatabaseReference myRef = database.getReference("Users");
+                            User user = new User(binding.signUpName.getText().toString(), binding.signUpEmail.getText().toString(), binding.signUpPassword.getText().toString(), mAuth.getUid());
+                            myRef.child(mAuth.getUid()).setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Toast.makeText(SignUpActivity.this, "Signed In", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
                             startActivity(new Intent(SignUpActivity.this, SIgnInActivity.class));
 
                         } else {
@@ -113,15 +119,6 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void userToDataBase(String name, String email, String password, String uid) {
         // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Users");
-        User user = new User(name, email, password, uid);
-        myRef.child(uid).setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                Toast.makeText(SignUpActivity.this, "Signed In", Toast.LENGTH_SHORT).show();
-            }
-        });
 
 
     }

@@ -1,11 +1,10 @@
 package com.example.basicchatapp.Model;
 
 public class User {
-    private  String uid = null;
     private String name = null;
     private String email = null;
     private String password = null;
-    private String uId = null;
+    private String uId;
     private String lastMsg = null;
 
 
@@ -19,11 +18,18 @@ public class User {
 
     }
 
+    // constructor
     public User(String name, String email, String password, String uid) {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.uid = uid;
+        this.uId = uid;
+    }
+
+    public User(String uid, String name, String email) {
+        this.uId = uid;
+        this.name = name;
+        this.email = email;
     }
 
     public String getName() {

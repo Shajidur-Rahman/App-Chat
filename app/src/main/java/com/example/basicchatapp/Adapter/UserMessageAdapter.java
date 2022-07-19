@@ -1,6 +1,7 @@
 package com.example.basicchatapp.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,15 +51,26 @@ public class UserMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        Message message = (Message) messageArrayList.get(position);
-
-        switch (holder.getItemViewType()) {
-            case VIEW_TYPE_MESSAGE_SENT:
-                ((SentViewHolder) holder).bind(message);
-                break;
-            case VIEW_TYPE_MESSAGE_RECEIVED:
-                ((RecieveViewHolder) holder).bind(message);
+//        Message message = (Message) messageArrayList.get(position);
+//
+        if (holder.getClass() == SentViewHolder.class){
+            Message message1 = messageArrayList.get(position);
+            SentViewHolder sentViewHolder = (SentViewHolder) holder;
+            ((SentViewHolder) holder).message.setText(message1.getMessage());
+            Log.d("ShajidurRahman", "onBindViewHolder: " + messageArrayList.size());
+        } else {
+            Message message = messageArrayList.get(position);
+            RecieveViewHolder recieveViewHolder = (RecieveViewHolder) holder;
+            ((RecieveViewHolder) holder).message.setText(message.getMessage());
         }
+//
+//        switch (holder.getItemViewType()) {
+//            case VIEW_TYPE_MESSAGE_SENT:
+//                ((SentViewHolder) holder).bind(message);
+//                break;
+//            case VIEW_TYPE_MESSAGE_RECEIVED:
+//                ((RecieveViewHolder) holder).bind(message);
+//        }
     }
 
     @Override
@@ -69,9 +81,9 @@ public class UserMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     // Determines the appropriate ViewType according to the sender of the message.
     @Override
     public int getItemViewType(int position) {
-        Message message = (Message) messageArrayList.get(position);
+        Message message = messageArrayList.get(position);
 
-        if (message.getSenderId().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
+        if (FirebaseAuth.getInstance().getCurrentUser().getUid().equals(message.getSenderId())) {
             // If the current user is the sender of the message
             return VIEW_TYPE_MESSAGE_SENT;
         } else {
@@ -87,12 +99,8 @@ public class UserMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         public SentViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            message = itemView.findViewById(R.id.sendMsg);
+            message = itemView.findViewById(R.id.sentText);
 
-        }
-
-        void bind(Message message1){
-            message.setText(message1.getMessage());
         }
 
     }
@@ -108,9 +116,6 @@ public class UserMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         }
 
-        void bind(Message message1){
-            message.setText(message1.getMessage());
-        }
 
     }
 }
